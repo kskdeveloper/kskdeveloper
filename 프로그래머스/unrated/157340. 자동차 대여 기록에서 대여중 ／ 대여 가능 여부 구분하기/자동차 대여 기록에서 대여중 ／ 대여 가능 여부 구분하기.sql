@@ -2,11 +2,11 @@ SELECT T1.CAR_ID
      , MAX(T1.AVAILABILITY) AS AVAILABILITY
 FROM (
     SELECT CAR_ID
-     , (CASE WHEN 
-                TO_DATE('2022-10-16', 'YYYY-MM-DD') BETWEEN START_DATE AND END_DATE 
-             THEN '대여중' 
-             ELSE '대여 가능' 
-         END) AS AVAILABILITY
+         , (CASE WHEN 
+                    DATE_FORMAT('2022-10-16', '%Y-%m-%d') BETWEEN START_DATE AND END_DATE 
+                 THEN '대여중' 
+                 ELSE '대여 가능' 
+             END) AS AVAILABILITY
     FROM CAR_RENTAL_COMPANY_RENTAL_HISTORY
     ) T1
 GROUP BY T1.CAR_ID
